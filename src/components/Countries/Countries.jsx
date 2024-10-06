@@ -14,16 +14,30 @@ const Countries = () => {
             .then(data => setCountries(data))
     }, [])
 
-    const handleVisited = country => {
-        console.log(country);
+    const handleVisitedCountry = country => {
+        const newVisitedCountry = [...visitedCountry, country]
+        setVisitedCountry(newVisitedCountry)
     }
     return (
         <div>
             <h3>Countries: {countries.length}</h3>
 
+            <div>
+                <h5>Visited Countries list :{visitedCountry.length} </h5>
+                <ul>
+                    {
+                       visitedCountry.map(ghuradesh => <p key={ghuradesh.cca3} >{ghuradesh.name.common} </p> )
+                    }
+                </ul>
+            </div>
+
+
             <div className="countries">
                 {
-                    countries.map(desh => <Country key={desh.cca3} country={desh} ></Country>)
+                    countries.map(desh => <Country
+                        key={desh.cca3}
+                        country={desh}
+                        handleVisitedCountry={handleVisitedCountry} ></Country>)
                 }
             </div>
         </div>
